@@ -5,19 +5,14 @@ from math import sqrt
 app = Flask(__name__)
 
 @app.route('/')
-def nao_entre_em_panico():
+def fib(quant):
+    seq = [0, 1]
+    while len(seq) < quant:
+        seq.append(seq[-1] + seq[-2])
+    return seq
 
-    anterior = 0
-    proxima = 1
-    soma = 1
-
-    for n in range (0, 101):
-        print(anterior)
-        soma = proxima + anterior
-        anterior = proxima
-        proxima = soma
-    
-     return anterior
+seq = fib(100)
+print(seq)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
