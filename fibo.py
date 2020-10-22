@@ -1,25 +1,19 @@
-import os 
+import os
 from flask import Flask, jsonify, request
 from math import sqrt
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 @app.route('/')
-def nao_entre_em_panico():
-    proximo = 1
-    anterior = 0
-    limite = 98
-    found = 0
-    resposta = "1,\n"
-    while (found < limite):
-        tmp = proximo
-        proximo = proximo + anterior
-        anterior = tmp
-        found = found+1
-        resposta+= str(proximo) + ",\n"
-        
-    return resposta
+def fib(quant):
+    seq = [0, 1]
+    while len(seq) < quant:
+        seq.append(seq[-1] + seq[-2])
+    return seq
 
-if _name_ == "_main_":
+seq = fib(100)
+print(seq)
+
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
